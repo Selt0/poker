@@ -105,4 +105,18 @@ describe Deck do
       expect(not_shuffled).to be(false)
     end
   end
+
+  describe "#deal_hand" do
+    let(:deck) { Deck.new }
+    
+    it "should return a new hand" do
+      hand = deck.deal_hand
+      expect(hand).to be_a(Hand)
+      expect(hand.cards.count).to eq(5)
+    end
+
+    it "should take cards from the deck" do
+      expect { deck.deal_hand }.to change{ deck.count }.by(-5)
+    end
+  end
 end

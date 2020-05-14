@@ -33,4 +33,5 @@ class Deck
   def shuffle
     @deck.shuffle!
   end
+  
 end
