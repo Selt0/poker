@@ -45,22 +45,48 @@ describe Deck do
   end
 
   describe "#take" do
-    context "takes the cards" do
-      it "should use the front of the cards array" do
-        expect(deck.take(1)).to eq(cards[0..0])
-        expect(deck.take(2)).to eq(cards[1..2])
-      end
+    it "should use the front of the cards array" do
+      expect(deck.take(1)).to eq(cards[0..0])
+      expect(deck.take(2)).to eq(cards[1..2])
+    end
 
-      it "rmoves cards from the deck" do
-        deck.take(2)
-        expect(deck.count).to eq(1)
-      end
+    it "rmoves cards from the deck" do
+      deck.take(2)
+      expect(deck.count).to eq(1)
+    end
 
-      context "when you take more cards than there are" do
-        it "raises error" do
-          expect { deck.take(4) }.to raise_error("not enough cards")
-        end
+    context "when you take more cards than there are" do
+      it "raises error" do
+        expect { deck.take(4) }.to raise_error("not enough cards")
       end
+    end
+  end
+
+  describe "#return" do
+    let(:more_cards) do 
+      [ double("card", :value => 5 , :suit => :hearts),
+        double("card", :value => 6 , :suit => :hearts),
+        double("card", :value => 7 , :suit => :hearts) ]
+    end
+
+    it "should return the cards to the deck" do
+      deck.return(more_cards)
+      expect(deck.count).to eq(6)
+    end
+
+    it "should not destroy the given array" do
+      more_cards_dup = more_cards.dup
+      deck.return(more_cards_dup)
+      expect(more_cards_dup).to eq(more_cards)
+    end
+
+    it "should add new cards to the bottom of the deck" do
+      deck.return(more_cards)
+      deck.take(3)
+
+      expect(deck.take(1)).to eq(more_cards[0..0])
+      expect(deck.take(1)).to eq(more_cards[1..1])
+      expect(deck.take(1)).to eq(more_cards[2..2])
     end
   end
 end
