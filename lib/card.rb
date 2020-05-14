@@ -1,6 +1,6 @@
 class Card
 
-  CARD_VALUES = [:A, :K, :Q, :J, 10, 9, 8, 7, 6, 5, 4, 3, 2]
+  CARD_VALUES = [2, 3, 4, 5, 6, 7, 8, 9, 10, :J, :Q, :K, :A]
 
   SUIT_STRINGS = {
     :clubs => '♣',
@@ -25,5 +25,19 @@ class Card
     end
 
     @value, @suit = value, suit
+  end
+
+  def ==(other_card)
+    (self.suit == other_card.suit) && (self.value == other_card.value)
+  end
+
+  def <=>(other_card)
+    if self == other_card
+      0
+    elsif value != other_card.value
+      Card.values.index(value) <=> Card.values.index(other_card.value)
+    elsif suit != other_card.suit
+      Card.suits.index(suit) <=> Card.suits.index(other_card.suit)
+    end
   end
 end
