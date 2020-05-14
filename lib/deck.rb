@@ -29,4 +29,8 @@ class Deck
   def return(cards)
     @deck.push(*cards)
   end
+
+  def shuffle
+    @deck.shuffle!
+  end
 end
