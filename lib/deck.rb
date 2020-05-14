@@ -16,4 +16,13 @@ class Deck
     @deck = deck
   end
 
+  def count
+    @deck.count
+  end
+
+  def take(n)
+    raise "not enough cards" if n > @deck.count
+
+    @deck.shift(n)
+  end
 end
