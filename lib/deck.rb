@@ -25,4 +25,8 @@ class Deck
 
     @deck.shift(n)
   end
+
+  def return(cards)
+    @deck.push(*cards)
+  end
 end
