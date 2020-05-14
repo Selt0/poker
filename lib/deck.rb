@@ -2,18 +2,18 @@ require_relative 'card'
 
 class Deck
 
-  attr_reader :deck
-
-  CARDS = [:A, :K, :Q, :J, 10, 9, 8, 7, 6, 5, 4, 3, 2]
-
-  SUITS = ['♧', '♢', '♥', '♤']
-
-  def initialize
-    @deck = SUITS.map do |suit|
-        CARDS.map do |card|
-          Card.new(card, suit)
-        end
+  def self.all_cards
+    deck = []
+    Card::SUIT_STRINGS.keys.each do |suit|
+      Card::CARD_VALUES.each do |value|
+        deck << Card.new(value, suit)
       end
+    end
+    deck
+  end
+
+  def initialize (deck = Deck.all_cards)
+    @deck = deck
   end
 
 end
