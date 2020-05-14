@@ -27,6 +27,10 @@ class Card
     @value, @suit = value, suit
   end
 
+  def to_s
+    value + SUIT_STRINGS[suit]
+  end
+
   def ==(other_card)
     (self.suit == other_card.suit) && (self.value == other_card.value)
   end
