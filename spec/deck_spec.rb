@@ -89,4 +89,20 @@ describe Deck do
       expect(deck.take(1)).to eq(more_cards[2..2])
     end
   end
+
+  describe "#shuffle" do
+    it "should shuffle the deck" do
+      cards = deck.take(3)
+      deck.return(cards)
+
+      not_shuffled = (1..5).all? do
+        deck.shuffle
+        shuffled_Cards = deck.take(3)
+        deck.return(shuffled_Cards)
+
+        (0..2).all? { |i| shuffled_Cards[i] == cards[i] }
+      end
+      expect(not_shuffled).to be(false)
+    end
+  end
 end
