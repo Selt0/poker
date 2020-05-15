@@ -52,4 +52,144 @@ describe Hand do
       end
     end
   end
+
+  describe 'poker hands' do
+    let(:royal_flush) do
+      Hand.new([
+        Card.new(:A, :spades),
+        Card.new(:K, :spades),
+        Card.new(:Q, :spades),
+        Card.new(:J, :spades),
+        Card.new(10, :spades)
+      ])
+    end
+
+    let(:straight_flush) do
+      Hand.new([
+        Card.new(8, :spades),
+        Card.new(7, :spades),
+        Card.new(6, :spades),
+        Card.new(5, :spades),
+        Card.new(4, :spades)
+      ])
+    end
+
+    let(:four_of_a_kind) do
+      Hand.new([
+        Card.new(:A, :spades),
+        Card.new(:A, :hearts),
+        Card.new(:A, :diamonds),
+        Card.new(:A, :clubs),
+        Card.new(10, :spades)
+      ])
+    end
+      
+    let(:full_house) do
+      Hand.new([
+        Card.new(:A, :spades),
+        Card.new(:A, :clubs),
+        Card.new(:K, :spades),
+        Card.new(:K, :hearts),
+        Card.new(:K, :diamonds)
+      ])
+    end
+      
+    let(:flush) do
+      Hand.new([
+        Card.new(4, :spades),
+        Card.new(7, :spades),
+        Card.new(:A, :spades),
+        Card.new(2, :spades),
+        Card.new(8, :spades)
+      ])
+    end
+
+    let(:straight) do 
+      Hand.new([
+        Card.new(:K, :hearts),
+        Card.new(:Q, :hearts),
+        Card.new(:J, :diamonds),
+        Card.new(10, :clubs),
+        Card.new(9, :spades)
+      ])
+    end
+
+    let(:three_of_a_kind) do
+      Hand.new([
+        Card.new(3, :spades),
+        Card.new(3, :diamonds),
+        Card.new(3, :hearts),
+        Card.new(:J, :spades),
+        Card.new(10, :spades)
+      ])
+    end
+
+    let(:two_pair) do
+      Hand.new([
+        Card.new(:K, :hearts),
+        Card.new(:K, :diamonds),
+        Card.new(:Q, :spades),
+        Card.new(:Q, :clubs),
+        Card.new(10, :spades)
+      ])
+    end
+
+    let(:one_pair) do
+      Hand.new([
+        Card.new(:A, :spades),
+        Card.new(:A, :diamonds),
+        Card.new(:Q, :hearts),
+        Card.new(:J, :diamonds),
+        Card.new(10, :hearts)
+      ])
+    end
+
+    let(:high_card) do
+      Hand.new([
+        Card.new(10, :spades),
+        Card.new(9, :spades),
+        Card.new(6, :diamonds),
+        Card.new(4, :hearts),
+        Card.new(2, :spades)
+      ])
+    end
+
+    let(:hand_ranks) do
+      [
+        :royal_flush,
+        :straight_flush,
+        :four_of_a_kind,
+        :full_house,
+        :flush,
+        :straight,
+        :three_of_a_kind,
+        :two_pair,
+        :one_pair,
+        :high_card
+      ]
+    end
+
+    let!(:hands) do
+      [
+        royal_flush,
+        straight_flush,
+        four_of_a_kind,
+        full_house,
+        flush,
+        straight,
+        three_of_a_kind,
+        two_pair,
+        one_pair,
+        high_card
+      ]
+    end
+
+    describe 'rank' do
+      it "should correctly identify the hand rank" do
+        hands.each_with_index do |hand, i|
+          expect(hand.rank).to eq(hand_ranks[i])
+        end
+      end
+    end
+  end
 end
