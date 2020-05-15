@@ -20,7 +20,7 @@ module TieBreaker
     three = set_card(3) <=> other_hand.set_card(3)
     if three == 0
       two = set_card(2) <=> other_hand.set_card(2)
-      if two = 0
+      if two == 0
         high_card = cards_without(set_card(3).value) &&
                     cards_without(set_card(2).value)
         
