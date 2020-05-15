@@ -33,7 +33,7 @@ class Card
   end
 
   def to_s
-    value + SUIT_STRINGS[suit]
+    value.to_s + SUIT_STRINGS[suit]
   end
 
   def ==(other_card)
