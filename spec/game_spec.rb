@@ -28,7 +28,7 @@ describe Game do
 
     it "should create players" do
       game.add_players(3, 100)
-      expect(game.players.first).to be_a(Players)
+      expect(game.players.first).to be_a(Player)
     end
 
     it "should set the players bankrolls" do
@@ -59,7 +59,7 @@ describe Game do
     
     it "should give each player a full hand" do
       game.deal_cards
-      expect (game.players.all? { |player| player.hand }).to be(true)
+      expect(game.players.all? { |player| player.hand }).to be(true)
     end
 
     context "when the player has no money" do
