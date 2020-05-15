@@ -1,4 +1,7 @@
+require_relative 'poker_hands'
+
 class Hand
+  include PokerHands
 
   attr_reader :cards
 
