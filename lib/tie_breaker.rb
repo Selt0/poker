@@ -16,6 +16,27 @@ module TieBreaker
     end
   end
 
+  def compare_full_house(other_hand)
+    three = set_card(3) <=> other_hand.set_card(3)
+    if three == 0
+      two = set_card(2) <=> other_hand.set_card(2)
+      if two = 0
+        high_card = cards_without(set_card(3).value) &&
+                    cards_without(set_card(2).value)
+        
+        other_high_card = other_hand.cards_without(set_card(3).value) &&
+                          other_hand.cards_without(set_card(2).value)
+        
+        high_card <=> other_high_card
+      else
+        two
+      end
+    else
+      three
+    end
+  end
+
+
   def compare_set_then_high_card(n, other_hand)
     set_card, other_set_card = set_card(n), other_hand.set_card(n)
 
@@ -24,6 +45,32 @@ module TieBreaker
     else
       set_card <=> other_set_card
     end
+  end
+
+  def compare_two_pair(other_hand)
+    high = high_pair[0] <=> other_hand.high_pair[0]
+    if high == 0
+      low = low_pair[0] <=> other_hand.low_pair[0]
+      if low == 0
+        high_card = cards.find { |card| card_value_count(card.value) != 2 }
+
+        other_high_card = other_hand.cards.find { |card| other_hand.card_value_count(card.value) != 2 }
+
+        high_card <=> other_high_card
+      else
+        low
+      end
+    else
+      high
+    end
+  end
+
+  def high_pair
+   pairs[1][0] < pairs[0][0] ? pairs[0] : pairs[1]
+  end
+
+  def low_pair
+    pairs[0][0] < pairs[1][0] ? pairs[0] : pairs[1]
   end
 
   protected
