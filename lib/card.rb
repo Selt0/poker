@@ -17,6 +17,10 @@ class Card
     CARD_VALUES
   end
 
+  def self.royal_values
+    CARD_VALUES[-5..-1]
+  end
+
   attr_reader :value, :suit
 
   def initialize(value, suit)
