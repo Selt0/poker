@@ -5,6 +5,10 @@ class Hand
 
   attr_reader :cards
 
+  def self.winner(hands)
+    hands.sort.last
+  end
+
   def initialize(cards)
     raise "must have 5 cards" unless cards.count == 5
     @cards = cards.sort
