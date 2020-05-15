@@ -37,7 +37,7 @@ describe Hand do
 
     it "takes specified cards" do 
       hand.trade_cards(take_cards, new_cards)
-      exoect(hand.cards).to include(*new_cards)
+      expect(hand.cards).to include(*new_cards)
     end
 
     context "if trade does not result in 5 cards" do
