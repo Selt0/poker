@@ -233,7 +233,7 @@ describe Hand do
             Hand.new([
               Card.new(:A, :hearts),
               Card.new(:K, :hearts),
-              Card.new(:Q, :herats),
+              Card.new(:Q, :hearts),
               Card.new(:J, :hearts),
               Card.new(10, :hearts)
             ])
@@ -301,7 +301,7 @@ describe Hand do
           let(:ace_four) do
             Hand.new([
               Card.new(:A, :spades),
-              Card.new(:A, :heats),
+              Card.new(:A, :hearts),
               Card.new(:A, :diamonds),
               Card.new(:A, :clubs),
               Card.new(10, :spades)
@@ -416,7 +416,7 @@ describe Hand do
               Card.new(:K, :spades),
               Card.new(:K, :hearts),
               Card.new(9, :diamonds),
-              Card.new(:J, :clbus),
+              Card.new(:J, :clubs),
               Card.new(10, :hearts)
             ])
           end
