@@ -48,9 +48,8 @@ class Game
       players.each_with_index do |player, i|
         next if player.folded?
         break if most_recent_better == player || round_over?
-
+        system "clear"
         display_status(i, high_bet)
-
         begin
           response = player.respond_bet
           case response
@@ -75,7 +74,6 @@ class Game
   end
 
   def display_status(index, high_bet)
-    puts
     puts "Pot: $#{@pot}"
     puts "High bet: $#{high_bet}"
 
@@ -85,7 +83,7 @@ class Game
     puts "Current player: #{index + 1}"
     puts "Player #{index + 1} has bet: $#{players[index].current_bet}"
     puts "The bet is at $#{high_bet}"
-    puts "Player #{index + 1}'s hand: #{player[index].hand}"
+    puts "Player #{index + 1}'s hand: #{players[index].hand}"
   end
 
   def trade_cards
@@ -144,4 +142,14 @@ class Game
   def end_game
     puts "The game is over"
   end
+end
+
+def test
+  game = Game.new
+  game.add_players(5, 100)
+  game.play
+end
+
+if __FILE__ == $PROGRAM_NAME
+  test
 end
