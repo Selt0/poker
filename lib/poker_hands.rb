@@ -1,3 +1,5 @@
+require_relative 'tie_breaker'
+
 module PokerHands
   include TieBreaker
 
