@@ -1,4 +1,5 @@
 require_relative 'card'
+require_relative 'hand'
 
 class Deck
 
@@ -33,5 +34,8 @@ class Deck
   def shuffle
     @deck.shuffle!
   end
-  
+
+  def deal_hand
+    hand = Hand.new(take(5))
+  end
 end
